@@ -433,7 +433,7 @@ def main():
         strings = [x.lower() for x in strings]
 
     string_count = len(strings)
-
+    FakeTextDataGenerator.string_count=string_count
     p = Pool(args.thread_count)
     for _ in tqdm(
         p.imap_unordered(
