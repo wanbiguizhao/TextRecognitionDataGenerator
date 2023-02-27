@@ -13,6 +13,7 @@ except ImportError as e:
 
 
 class FakeTextDataGenerator(object):
+    string_count=0
     @classmethod
     def generate_from_tuple(cls, t):
         """
@@ -256,7 +257,7 @@ class FakeTextDataGenerator(object):
         elif name_format == 1:
             name = "{}_{}".format(str(index), text)
         elif name_format == 2:
-            name = str(index)
+            name = str(index).rjust(len(str(FakeTextDataGenerator.string_count)),'0')
         else:
             print("{} is not a valid name format. Using default.".format(name_format))
             name = "{}_{}".format(text, str(index))
