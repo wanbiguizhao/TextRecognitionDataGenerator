@@ -433,7 +433,7 @@ def main():
         strings = [x.lower() for x in strings]
 
     string_count = len(strings)
-
+    FakeTextDataGenerator.string_count=string_count
     p = Pool(args.thread_count)
     for _ in tqdm(
         p.imap_unordered(
@@ -482,7 +482,7 @@ def main():
             os.path.join(args.output_dir, "labels.txt"), "w", encoding="utf8"
         ) as f:
             for i in range(string_count):
-                file_name = str(i) + "." + args.extension
+                file_name = str(i).rjust(len( str(string_count)),'0') + "." + args.extension
                 label = strings[i]
                 if args.space_width == 0:
                     label = label.replace(" ", "")
